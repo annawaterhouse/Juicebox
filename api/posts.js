@@ -1,19 +1,19 @@
 const router = require('express').Router();
-module.exports = router;
+
 
 const prisma = require('../prisma')
 
 
 //This returns all the posts in the database
-router.get('/',  async(req, res, next) => {
+router.get('/', async(req, res, next) => {
     try{
         const posts = await prisma.post.findMany();
         res.json(posts)
+        
     } catch{
         next();
     }
 });
-
 
 //This will return a single post grabbing its specified id
 router.get('/:id', async (req, res, next) => {
@@ -32,3 +32,4 @@ router.get('/:id', async (req, res, next) => {
         next();
     }
 });
+module.exports = router;
